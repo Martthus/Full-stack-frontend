@@ -1,16 +1,23 @@
 import { useEffect } from "react"
 import { useState } from "react"
-import { AllMusicData } from "../services/musicData/AllMusicData"
+import { useProtect } from "../components/ProtectedRoute/useProtect"
+import { GetMusicData } from "../services/musicData/GetMusicData"
 
-const useAxios = (initialState: any, endpoint: any, errorMessage: any) => {
+const useAxios = (initialState: any, endpoint: string, errorMessage: string) => {
     const [data, setData] = useState(initialState)
 
-    useEffect(() => {
-        AllMusicData(endpoint, setData, errorMessage)
-    }, [endpoint])
+    const token = localStorage.getItem("token")
+
+    if (token) {
+        useEffect(() => {
+            GetMusicData(endpoint, setData, errorMessage)
+        }, [endpoint])
+    } else {
+        useProtect()
+    }
 
     const updateData = () => {
-        AllMusicData(endpoint, setData, errorMessage)
+        GetMusicData(endpoint, setData, errorMessage)
     }
     return [data, updateData]
 }
