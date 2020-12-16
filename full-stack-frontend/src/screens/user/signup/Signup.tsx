@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom'
 import { LoginAndSignupData } from '../../../services/userData/LoginAndSignupData'
 import { useUnProtect } from '../../../components/ProtectedRoute/useUnProtect'
 import { FormSignup } from '../../../components/formSignup/FormSignup'
+import { Main } from '../../../styles/globalFormStyle'
 
 export default function Signup() {
     const { form, onChange, resetState } = useForm({ email: "", password: "" })
@@ -23,13 +24,9 @@ export default function Signup() {
 
     useUnProtect()
     return (
-        <main>
+        <Main>
             <FormSignup
                 onSubmit={handleSubmit}
-                typeName={"name"}
-                typeEmail={"email"}
-                typeNickname={"nickname"}
-                typePassword={"password"}
                 nameName={"name"}
                 nameEmail={"email"}
                 nameNickname={"nickname"}
@@ -40,6 +37,6 @@ export default function Signup() {
                 valuePassword={form.password}
                 onChange={handleOnChange}
             />
-        </main>
+        </Main>
     )
 }
