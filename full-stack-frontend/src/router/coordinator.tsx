@@ -16,7 +16,11 @@ export const goToAllMusics = (history: any): void => {
 }
 
 export const goToSearchMusic = (history: any): void => {
-    history.push("/searchMusic")
+    history.push("/music/searchMusic")
+}
+
+export const goToMusicById = (history: any, id: string): void => {
+    history.push(`/music/${id}`)
 }
 
 export const goToBack = (history: any): void => {
